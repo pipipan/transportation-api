@@ -7,8 +7,6 @@ var express = require('express');
 var router = express.Router();
 var util = require('util');
 
-var CarError = require('../errTackle/carError');
-
 var mongoose     = require('mongoose');
 
 
@@ -45,10 +43,32 @@ router.route('/cars')
      * @throws Mongoose Database Error (500 Status Code)
      */
     .post(function(req, res){
-        if (typeof req.body.make === "undefined" || req.body.make.length > 18) {
-            res.sendStatus(400);
-            return;
+        var reqBody = req.body;
 
+        if(reqBody.year === undefined ||
+           reqBody.maker === undefined ||
+           reqBody.model === undefined ||
+           reqBody.doorNum === undefined ||
+           reqBody.passNum === undefined ||
+           reqBody.license === undefined ||
+           reqBody.driverID === undefined ||
+           reqBody.insurance === undefined) {
+            res.status(400).json({
+                "errorCode": 2001,
+                "errorMsg": "Property Missing",
+                "statusCode": 400
+            })
+        }
+
+
+        if(typeof reqBody.license !==  'string' ||
+           typeof reqBody.maker !== 'string' ||
+           typeof reqBody.model !== 'string') {
+            res.status(400).json({
+                "errorCode": 2002,
+                "errorMsg": "Wrong Property Type",
+                "statusCode": 400
+            })
         }
         /**
          * Add aditional error handling here

@@ -16,7 +16,7 @@ in fulfilling a request. the response body will look as below
 
 ```
 
-Identify all possible error codes for each of the resources and consolidate them into a single table as below. Some 
+Identify all possible error codes for each of the resources and consolidate them into a single table as below. Some
 examples of possible errors are below.
 
 1. Invalid resource name
@@ -24,7 +24,7 @@ examples of possible errors are below.
 3. Invalid property name (given in POST)
 4. Invalid value for a property (given in POST)
 
-Present your submission in the form a document with the following table. 
+Present your submission in the form a document with the following table.
 
 Error Code  | Error Message    | Relevant Resources  | Parameters
 ----------- | ----------|------------ |-----
@@ -39,14 +39,14 @@ In the second part of the homework, you will implement all the errors listed in 
 [This link](https://bitbucket.org/appcmusv/transportation-express-api) points to the code you can use to add your code.
 Follow instructions in the README.md file to install this locally and add your code using your favorite editor.
 
-Below are the fields you should add to the entities. 
+Below are the fields you should add to the entities.
 
 _drivers_
 
 - firstName (String, 1-15)
 - lastName (String, 1-15)
-- emailAddress (Reegex `/[a-zA-Z0-9_.]+\@[a-zA-Z](([a-zA-Z0-9-]+).)*/` , Required) 
-- password (Used for POST only, String, 8-16, Required - No constraints, Store clear text) 
+- emailAddress (Reegex `/[a-zA-Z0-9_.]+\@[a-zA-Z](([a-zA-Z0-9-]+).)*/` , Required)
+- password (Used for POST only, String, 8-16, Required - No constraints, Store clear text)
 - addressLine1 (String, 50)
 - addressLine2 (String, 50)
 - city (String, 50)
@@ -60,8 +60,8 @@ _passengers_
 
 - firstName (String, 1-15)
 - lastName (String, 1-15)
-- emailAddress (Reegex `/[a-zA-Z0-9_.]+\@[a-zA-Z](([a-zA-Z0-9-]+).)*/` , Required) 
-- password (Used for POST only, String, 8-16, Required - No constraints, Store clear text) 
+- emailAddress (Reegex `/[a-zA-Z0-9_.]+\@[a-zA-Z](([a-zA-Z0-9-]+).)*/` , Required)
+- password (Used for POST only, String, 8-16, Required - No constraints, Store clear text)
 - addressLine1 (String, 50)
 - addressLine2 (String, 50)
 - city (String, 50)

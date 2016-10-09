@@ -1,4 +1,4 @@
-/** 
+/**
  * Express Route: /drivers
  * @author Clark Jeria
  * @version 0.0.3
@@ -50,10 +50,35 @@ router.route('/drivers')
      * @throws Mongoose Database Error (500 Status Code)
      */
     .post(function(req, res){
-        if (typeof req.body.emailAddress === "undefined" || req.body.firstName.length > 15) {
-            res.sendStatus(400);
-            return;
+        var reqBody = req.body;
+        if(reqBody.firstName === undefined ||
+           reqBody.lastName === undefined ||
+           reqBody.dateOfBirth === undefined ||
+           reqBody.licenseType === undefined ||
+           reqBody.username === undefined ||
+           reqBody.emailAddress === undefined ||
+           reqBody.password === undefined ||
+           reqBody.addressLine1 === undefined ||
+           reqBody.addressLine2 === undefined ||
+           reqBody.city === undefined ||
+           reqBody.state === undefined ||
+           reqBody.zip === undefined ||
+           reqBody.phoneNumber === undefined) {
+            res.status(400).json({
+                "errorCode": 2001,
+                "errorMsg": "Property Missing",
+                "statusCode": 400
+            })
+        }
 
+        if(typeof reqBody.firstName !==  'string' ||
+           typeof reqBody.lastName !== 'string' ||
+           typeof reqBody.username !== 'string') {
+            res.status(400).json({
+                "errorCode": 2002,
+                "errorMsg": "Wrong property type",
+                "statusCode": 400
+            })
         }
         /**
          * Add aditional error handling here

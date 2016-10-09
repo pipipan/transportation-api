@@ -1,4 +1,4 @@
-/** 
+/**
  * Express Route: /paymentaccounts
  * @author Clark Jeria
  * @version 0.0.3
@@ -41,9 +41,27 @@ router.route('/paymentaccounts')
      * @throws Mongoose Database Error (500 Status Code)
      */
     .post(function(req, res){
-        if(typeof req.body.accountType === 'undefined'){
-            res.status(422).json({"errorCode": "1002", "errorMessage" : util.format("Missing required parameter %s", "accountType"), "statusCode" : "422"});
-            return;
+        var reqBody = req.body;
+        if(reqBody.accountType === undefined ||
+           reqBody.accountNumber === undefined ||
+           reqBody.expirationDate === undefined ||
+           reqBody.nameOnAccount === undefined ||
+           reqBody.bank === undefined) {
+            res.status(400).json({
+                "errorCode": 2001,
+                "errorMsg": "Property Missing",
+                "statusCode": 400
+            })
+        }
+
+        if(typeof reqBody.license !==  'string' ||
+           typeof reqBody.maker !== 'string' ||
+           typeof reqBody.model !== 'string') {
+            res.status(400).json({
+                "errorCode": 2002,
+                "errorMsg": "Wrong Property Type",
+                "statusCode": 400
+            })
         }
         /**
          * Add aditional error handling here
